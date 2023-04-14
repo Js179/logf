@@ -7,8 +7,17 @@ import (
 
 var (
 	errorLog = log.New(os.Stdout, "\033[31m[ERROR]\033[0m", log.LstdFlags|log.Lshortfile)
-	Error    = errorLog.Println
-	Errorf   = errorLog.Printf
+
+	Error = func(v ...any) {
+		if v != nil && v[0] != nil {
+			errorLog.Println(v...)
+		}
+	}
+	Errorf = func(format string, v ...any) {
+		if v != nil && v[0] != nil {
+			errorLog.Printf(format, v...)
+		}
+	}
 
 	Panic = func(v ...any) {
 		if v != nil && v[0] != nil {
