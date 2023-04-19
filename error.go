@@ -1,6 +1,7 @@
 package logf
 
 import (
+	"fmt"
 	"log"
 	"os"
 )
@@ -10,34 +11,40 @@ var (
 
 	Error = func(v ...any) {
 		if v != nil && v[0] != nil {
-			errorLog.Println(v...)
+			_ = errorLog.Output(2, fmt.Sprintln(v...))
 		}
 	}
 	Errorf = func(format string, v ...any) {
 		if v != nil && v[0] != nil {
-			errorLog.Printf(format, v...)
+			_ = errorLog.Output(2, fmt.Sprintf(format, v...))
 		}
 	}
 
 	Panic = func(v ...any) {
 		if v != nil && v[0] != nil {
-			errorLog.Panicln(v...)
+			s := fmt.Sprintln(v...)
+			_ = errorLog.Output(2, s)
+			panic(s)
 		}
 	}
 	Panicf = func(format string, v ...any) {
 		if v != nil && v[0] != nil {
-			errorLog.Panicf(format, v...)
+			s := fmt.Sprintf(format, v...)
+			_ = errorLog.Output(2, s)
+			panic(s)
 		}
 	}
 
 	Fatal = func(v ...any) {
 		if v != nil && v[0] != nil {
-			errorLog.Fatalln(v...)
+			_ = errorLog.Output(2, fmt.Sprintln(v...))
+			os.Exit(1)
 		}
 	}
 	Fatalf = func(format string, v ...any) {
 		if v != nil && v[0] != nil {
-			errorLog.Fatalf(format, v...)
+			_ = errorLog.Output(2, fmt.Sprintf(format, v...))
+			os.Exit(1)
 		}
 	}
 )
