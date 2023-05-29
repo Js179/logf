@@ -25,7 +25,7 @@ func Test_Output(t *testing.T) {
 	now := time.Now()
 	date := fmt.Sprintf("%04d_%02d_%02d", now.Year(), now.Month(), now.Day())
 	filename := fmt.Sprintf("logs%s%s%s", string(os.PathSeparator), date, ".log")
-	file, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_RDWR, 766)
+	file, err := os.OpenFile(filename, os.O_CREATE|os.O_APPEND|os.O_RDWR, 0766)
 	Panic(err)
 	{
 		FileExport(file)

@@ -7,7 +7,7 @@ import (
 	"sync"
 )
 
-type Level uint8
+type Level int8
 
 type option struct {
 	Level
