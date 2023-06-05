@@ -54,8 +54,8 @@ func FileExportAndStdout(writer io.Writer) {
 }
 
 func set(level Level, writer io.Writer) {
-	opt.Mutex.Lock()
-	defer opt.Mutex.Unlock()
+	opt.Lock()
+	defer opt.Unlock()
 	opt.Level = level
 	opt.Writer = writer
 

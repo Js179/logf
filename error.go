@@ -48,7 +48,3 @@ var (
 		}
 	}
 )
-
-func init() {
-	errorLog.SetOutput(os.Stdout)
-}
